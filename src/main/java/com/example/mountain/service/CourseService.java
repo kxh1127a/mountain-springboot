@@ -30,7 +30,6 @@ public class CourseService {
         courseRepository.save(course);
     }
 
-
     public List<CourseItem> getCourses() {
         List<Course> target = courseRepository.findAll();
         List<CourseItem> result = new LinkedList<>();
@@ -41,6 +40,23 @@ public class CourseService {
            courseItem.setMountainInfo("No."+ item.getMountain().getId()+ " " + item.getMountain().getName()+ " mountain");
            courseItem.setCourseInfo(item.getName() + " / " + item.getDistance() + "km / " + item.getTime() +" hours");
            result.add(courseItem);
+        });
+        return result;
+    }
+
+
+    public List<CourseItem> getCourse(long id) {
+        List<Course> target = courseRepository.findAll();
+        List<CourseItem> result = new LinkedList<>();
+
+        target.forEach(item->{
+            if(item.getMountain().getId() == id) {
+                CourseItem courseItem = new CourseItem();
+                courseItem.setId(item.getId());
+                courseItem.setMountainInfo("No." + item.getMountain().getId() + " " + item.getMountain().getName() + " mountain");
+                courseItem.setCourseInfo(item.getName() + " / " + item.getDistance() + "km / " + item.getTime() + " hours");
+                result.add(courseItem);
+            }
         });
         return result;
     }

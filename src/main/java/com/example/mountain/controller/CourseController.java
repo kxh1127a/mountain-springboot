@@ -28,4 +28,9 @@ public class CourseController {
     public List<CourseItem> getCourses() {
         return courseService.getCourses();
     }
+
+    @GetMapping("/{id}") // mountain id
+    public List<CourseItem> getCourse(@PathVariable long id) {
+        return courseService.getCourse(id);
+    }
 }
