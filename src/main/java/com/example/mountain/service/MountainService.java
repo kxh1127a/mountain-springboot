@@ -2,8 +2,13 @@ package com.example.mountain.service;
 
 import com.example.mountain.entity.Mountain;
 import com.example.mountain.model.MountainCreateRequest;
+import com.example.mountain.model.MountainItem;
+import com.example.mountain.model.MountainResponse;
 import com.example.mountain.repository.MountainRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.LinkedList;
+import java.util.List;
 
 @Service
 public class MountainService {
@@ -21,5 +26,27 @@ public class MountainService {
 
         request.setId(mountain.getId());
         return request;
+    }
+
+    public List<MountainItem> getMountains() {
+        List<Mountain> target = mountainRepository.findAll();
+        List<MountainItem> result = new LinkedList<>();
+
+        target.forEach(item -> {
+            MountainItem addItem = new MountainItem();
+            addItem.setMountainInfo(item.getId()+"번 id는 "+item.getName()+" mountain 입니다.");
+            result.add(addItem);
+        });
+
+        return result;
+    }
+
+    public MountainResponse getMountain(long id) {
+        Mountain target = mountainRepository.findById(id).orElseThrow();
+
+        MountainResponse result = new MountainResponse();
+        result.setMountainResult("id " + id +" : "+ target.getName() + " mountain");
+
+        return result;
     }
 }
