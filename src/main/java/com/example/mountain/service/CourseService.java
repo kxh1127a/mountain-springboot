@@ -68,4 +68,8 @@ public class CourseService {
         target.setName(request.getName());
         courseRepository.save(target);
     }
+
+    public void delCourse(long id) {
+        courseRepository.deleteById(id);
+    }
 }

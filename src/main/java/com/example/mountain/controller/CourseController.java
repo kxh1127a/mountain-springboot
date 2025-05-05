@@ -40,4 +40,10 @@ public class CourseController {
         courseService.putCourseByName(id, request);
         return "success update!";
     }
+
+    @DeleteMapping("/{id}")
+    public String delCourse(@PathVariable long id) {
+        courseService.delCourse(id);
+        return "success delete!";
+    }
 }
