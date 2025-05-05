@@ -60,4 +60,17 @@ public class MountainService {
     public void delMountain(long id) {
         mountainRepository.deleteById(id);
     }
+
+    public long getMountainId(String mountainName) {
+        List<Mountain> target = mountainRepository.findAll();
+        long result = 0;
+
+        for (Mountain item : target) {
+            if (item.getName().equals(mountainName)) {
+                result = item.getId();
+            }
+        }
+
+        return result;
+    }
 }
