@@ -46,4 +46,9 @@ public class CourseController {
         courseService.delCourse(id);
         return "success delete!";
     }
+
+    @GetMapping("/km/{id}")
+    public void getLowerSorting() {
+
+    }
 }
