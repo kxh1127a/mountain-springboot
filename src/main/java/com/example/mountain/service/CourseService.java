@@ -4,6 +4,7 @@ import com.example.mountain.entity.Course;
 import com.example.mountain.entity.Mountain;
 import com.example.mountain.model.CourseCreateRequest;
 import com.example.mountain.model.CourseItem;
+import com.example.mountain.model.CourseNameUpdateRequest;
 import com.example.mountain.repository.CourseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -59,5 +60,12 @@ public class CourseService {
             }
         });
         return result;
+    }
+
+
+    public void putCourseByName(long id, CourseNameUpdateRequest request) {
+        Course target = courseRepository.findById(id).orElseThrow();
+        target.setName(request.getName());
+        courseRepository.save(target);
     }
 }

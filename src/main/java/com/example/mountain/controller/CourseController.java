@@ -2,6 +2,7 @@ package com.example.mountain.controller;
 
 import com.example.mountain.model.CourseCreateRequest;
 import com.example.mountain.model.CourseItem;
+import com.example.mountain.model.CourseNameUpdateRequest;
 import com.example.mountain.service.CourseService;
 import com.example.mountain.service.MountainService;
 import lombok.RequiredArgsConstructor;
@@ -32,5 +33,11 @@ public class CourseController {
     @GetMapping("/{id}") // mountain id
     public List<CourseItem> getCourse(@PathVariable long id) {
         return courseService.getCourse(id);
+    }
+
+    @PatchMapping("/{id}")
+    public String putCourseByName(@PathVariable long id, @RequestBody CourseNameUpdateRequest request){
+        courseService.putCourseByName(id, request);
+        return "success update!";
     }
 }
