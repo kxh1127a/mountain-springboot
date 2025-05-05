@@ -3,6 +3,7 @@ package com.example.mountain.service;
 import com.example.mountain.entity.Mountain;
 import com.example.mountain.model.MountainCreateRequest;
 import com.example.mountain.model.MountainItem;
+import com.example.mountain.model.MountainNameUpdateRequest;
 import com.example.mountain.model.MountainResponse;
 import com.example.mountain.repository.MountainRepository;
 import org.springframework.stereotype.Service;
@@ -48,5 +49,11 @@ public class MountainService {
         result.setMountainResult("id " + id +" : "+ target.getName() + " mountain");
 
         return result;
+    }
+
+    public void putMountainByName(MountainNameUpdateRequest request, long id) {
+        Mountain target = mountainRepository.findById(id).orElseThrow();
+        target.setName(request.getName());
+        mountainRepository.save(target);
     }
 }
