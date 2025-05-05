@@ -37,4 +37,11 @@ public class MountainController {
 
         return id + "번 data의 이름을 " + request.getName()+ "으로 변경하였습니다.";
     }
+
+    @DeleteMapping("/{id}")
+    public String delMountain(@PathVariable long id) {
+        mountainService.delMountain(id);
+
+        return id + "번 data를 삭제하였습니다.";
+    }
 }

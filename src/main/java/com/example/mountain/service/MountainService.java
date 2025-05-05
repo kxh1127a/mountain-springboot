@@ -56,4 +56,8 @@ public class MountainService {
         target.setName(request.getName());
         mountainRepository.save(target);
     }
+
+    public void delMountain(long id) {
+        mountainRepository.deleteById(id);
+    }
 }
