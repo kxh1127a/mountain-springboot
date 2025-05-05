@@ -1,13 +1,13 @@
 package com.example.mountain.controller;
 
 import com.example.mountain.model.CourseCreateRequest;
+import com.example.mountain.model.CourseItem;
 import com.example.mountain.service.CourseService;
 import com.example.mountain.service.MountainService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,5 +22,10 @@ public class CourseController {
         courseService.setCourse(id, request);
 
         return "success Create data!";
+    }
+
+    @GetMapping("/all")
+    public List<CourseItem> getCourses() {
+        return courseService.getCourses();
     }
 }

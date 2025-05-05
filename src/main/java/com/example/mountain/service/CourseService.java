@@ -3,9 +3,13 @@ package com.example.mountain.service;
 import com.example.mountain.entity.Course;
 import com.example.mountain.entity.Mountain;
 import com.example.mountain.model.CourseCreateRequest;
+import com.example.mountain.model.CourseItem;
 import com.example.mountain.repository.CourseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.LinkedList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -27,5 +31,17 @@ public class CourseService {
     }
 
 
+    public List<CourseItem> getCourses() {
+        List<Course> target = courseRepository.findAll();
+        List<CourseItem> result = new LinkedList<>();
 
+        target.forEach(item->{
+           CourseItem courseItem = new CourseItem();
+           courseItem.setId(item.getId());
+           courseItem.setMountainInfo("No."+ item.getMountain().getId()+ " " + item.getMountain().getName()+ " mountain");
+           courseItem.setCourseInfo(item.getName() + " / " + item.getDistance() + "km / " + item.getTime() +" hours");
+           result.add(courseItem);
+        });
+        return result;
+    }
 }
