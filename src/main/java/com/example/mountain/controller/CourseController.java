@@ -47,8 +47,8 @@ public class CourseController {
         return "success delete!";
     }
 
-    @GetMapping("/km/{id}")
-    public void getLowerSorting() {
-
+    @GetMapping("/search")
+    public List<CourseItem> getLowerSorting(@RequestParam(required = false) Integer km) {
+        return courseService.getLowerSorting(km);
     }
 }

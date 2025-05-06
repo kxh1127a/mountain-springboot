@@ -74,4 +74,20 @@ public class CourseService {
     }
 
 
+    public List<CourseItem> getLowerSorting(Integer km) {
+        List<Course> target = courseRepository.findAllByDistanceLessThanEqual(km);
+
+        List<CourseItem> result = new LinkedList<>();
+
+        target.forEach(item->{
+            CourseItem courseItem = new CourseItem();
+            courseItem.setId(item.getId());
+            courseItem.setMountainInfo("No."+ item.getMountain().getId()+ " " + item.getMountain().getName()+ " mountain");
+            courseItem.setCourseInfo(item.getName() + " / " + item.getDistance() + "km / " + item.getTime() +" hours");
+            result.add(courseItem);
+        });
+        return result;
+
+
+    }
 }
