@@ -90,4 +90,7 @@ public class CourseService {
     }
 
 
+    public Course getCourseInfo(Long courseId) {
+        return courseRepository.findById(courseId).orElseThrow();
+    }
 }
